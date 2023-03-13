@@ -16,17 +16,30 @@ use CodeIgniter\Config\BaseService;
  * that you might need. An example has been included with the general
  * method format you should use for your service methods. For more examples,
  * see the core Services file at system/Config/Services.php.
+ *
  */
+
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
-     *
-     *     return new \CodeIgniter\Example();
-     * }
+    /**
+     * @param bool $getShared
+     * @return LanguageObject|null
      */
+    public static function langObj(bool $getShared = true)
+    {
+        if ($getShared) {
+            return new LanguageObject();
+        }
+        return null;
+    }
+
+// public static function example($getShared = true)
+// {
+//    if ($getShared) {
+//        return static::getSharedInstance('example');
+//    }
+//
+//    return new \CodeIgniter\Example();
+// }
+
 }

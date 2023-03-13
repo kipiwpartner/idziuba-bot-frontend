@@ -1,4 +1,4 @@
-<script type="text/x-template" id="login-index-template">
+<script type="text/x-template" id="index-login-default-template">
     <div>
         <h1>Login Vue {{this.data.test}}</h1>
         <el-input
@@ -14,7 +14,8 @@
                 placeholder="Please input password"
                 show-password
         />
-        <el-button type="primary">Primary</el-button>
+        <el-button type="primary">{{this.lang.btn_send}}</el-button>
+        <p>{{this.lang.test}}</p>
     </div>
 
 </script>
@@ -22,19 +23,18 @@
 <script>
     const loginIndexTplVue = Vue.createApp({})
     loginIndexTplVue.use(ElementPlus);
-    loginIndexTplVue.component("login-index", {
-        template: "#login-index-template",
-        methods: {
-
-        },
+    loginIndexTplVue.component("index-login-default", {
+        template: "#index-login-default-template",
+        methods: {},
         mounted() {
-
+            console.log(this.lang)
         },
-        data(){
+        data() {
             return {
-                input:{},
-                data: <?= json_encode($data) ?>
+                input: {},
+                data: <?= json_encode($data) ?>,
+                lang: <?= json_encode( langObj('Translate.lang')) ?>
             }
-        } });
-
+        }
+    });
 </script>

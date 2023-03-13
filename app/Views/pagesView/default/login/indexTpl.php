@@ -1,9 +1,9 @@
 <?= view($data['pageVue']) ?>
 
-<div id="page-login">
-    <login-index></login-index>
+<div id="index-login-default">
+    <index-login-default></index-login-default>
 </div>
 
 <script>
-    loginIndexTplVue.mount('#page-login')
+    loginIndexTplVue.mount('#index-login-default')
 </script>

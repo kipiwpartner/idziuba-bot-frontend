@@ -10,6 +10,7 @@ class DefaultCtrl extends CtrlBase
 
     public function __construct()
     {
+        parent::__construct();
     }
 
     /**
@@ -18,8 +19,8 @@ class DefaultCtrl extends CtrlBase
     protected function getBaseTemplate(): array
     {
         $data = [
-            "partialMenuView" => "pagesView/default/partials/menuTpl",
-            "partialMenuVue" => "pagesVue/default/partials/menuTplVue",
+            "partialMenuView" => "pagesView/partials/menuTpl",
+            "partialMenuVue" => "pagesVue/partials/menuTplVue",
             ...parent::getBaseTemplate()
         ];
         return $data;

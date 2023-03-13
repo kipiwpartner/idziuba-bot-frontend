@@ -7,10 +7,7 @@ class CtrlBase extends BaseController
 {
     private string $locale;
 
-    public function __construct()
-    {
-
-    }
+    public function __construct(){}
 
     /**
      * @return string
@@ -26,6 +23,7 @@ class CtrlBase extends BaseController
      */
     protected function getBaseTemplate(): array
     {
+        helper(['langObject']);
         return [
             "locale" => $this->getLocale()
         ];
