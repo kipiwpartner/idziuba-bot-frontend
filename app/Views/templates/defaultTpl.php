@@ -11,15 +11,17 @@
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-plus"></script>
     <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+    <!-- import owns files -->
     <link rel="stylesheet" href="<?=base_url()?>assets/css/main.css">
+    <script type="text/javascript" src="<?=base_url()?>assets/js/main.bundle.js"></script>
     <title>Document</title>
 </head>
 <body>
-<div id="app">
-    <?= view($data['partialMenuView']) ?>
-    <div class="content" style="width: 50%">
-        <?= view($data['pageView']) ?>
+    <div id="app">
+        <?= view($data['partialMenuView']) ?>
+        <div class="content" style="width: 50%">
+            <?= view($data['pageView']) ?>
+        </div>
     </div>
-</div>
 </body>
 </html>

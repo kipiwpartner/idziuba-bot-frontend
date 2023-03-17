@@ -128,3 +128,4 @@ nb-configuration.xml
 /package-lock.json
 /public/assets/css/main.css
 /node_modules/
+/public/assets/js/main.bundle.js

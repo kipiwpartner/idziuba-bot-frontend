@@ -19,6 +19,12 @@ const paths = {
         src_main: 'resources/styles/main.scss',
         src: 'resources/styles/**/*.scss',
         dest: 'public/assets/css'
+    },
+    scripts: {
+        name:'main.bundle.js',
+        src_main: 'resources/js/main.js',
+        src: 'resources/js/**/*.js',
+        dest: 'public/assets/js'
     }
 };
 
@@ -41,10 +47,36 @@ gulp.task('scss', function(){
         .pipe(gulp.dest(paths.styles.dest))
 })
 
-gulp.task('watch', function(){
-    watch(paths.styles.src, gulp.parallel('scss'))
+//JS
+gulp.task('js', function(){
+    return gulp.src(paths.scripts.src_main)
+        .pipe(webpack({
+            mode: 'none',
+            optimization: {
+                minimize: true,
+                minimizer: [
+                    new TerserPlugin({
+                        test: /\.js(\?.*)?$/i,
+                    }),
+                ],
+            }
+        }))
+        .pipe(plumber ({
+            errorHandle: notify.onError(function(err){
+                return {
+                    title: "JavaScript",
+                    sound: false,
+                    message: err.message
+                }
+            })
+        }))
+        .pipe(concat(paths.scripts.name))
+        .pipe(gulp.dest(paths.scripts.dest))
 })
 
+gulp.task('watch', function(){
+    watch(paths.styles.src, gulp.parallel('scss'))
+    watch(paths.scripts.src, gulp.parallel('js'))
+})
 
-
-gulp.task('default', gulp.parallel('scss', 'watch'))
+gulp.task('default', gulp.parallel('scss', 'js', 'watch'))
