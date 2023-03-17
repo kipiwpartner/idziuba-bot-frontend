@@ -125,3 +125,6 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+/package-lock.json
+/public/assets/css/main.css
+/node_modules/

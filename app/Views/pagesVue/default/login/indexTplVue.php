@@ -27,7 +27,6 @@
         template: "#index-login-default-template",
         methods: {},
         mounted() {
-            console.log(this.lang)
         },
         data() {
             return {
