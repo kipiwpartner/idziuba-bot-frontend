@@ -7,9 +7,7 @@ class CtrlBase extends BaseController
 {
     private string $locale;
 
-    public function __construct(){
-
-    }
+    public function __construct(){}
 
     /**
      * @return string
