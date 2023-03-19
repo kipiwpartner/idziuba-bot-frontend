@@ -14,7 +14,7 @@
                 placeholder="Please input password"
                 show-password
         />
-        <el-button type="primary">{{this.lang.btn_send}}</el-button>
+        <el-button type="primary" @click="handleClick">{{this.lang.btn_send}}</el-button>
         <p>{{this.lang.test}}</p>
     </div>
 
@@ -25,7 +25,12 @@
     loginIndexTplVue.use(ElementPlus);
     loginIndexTplVue.component("index-login-default", {
         template: "#index-login-default-template",
-        methods: {},
+        methods: {
+            handleClick: async function () {
+                let data = await mainScripts.onAxiosCall(this.data.onAxiosCall, {'fdf':'fsdf'}, 'POST')
+                console.log(data)
+            }
+        },
         mounted() {
         },
         data() {

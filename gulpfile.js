@@ -78,5 +78,5 @@ gulp.task('watch', function(){
     watch(paths.styles.src, gulp.parallel('scss'))
     watch(paths.scripts.src, gulp.parallel('js'))
 })
-
 gulp.task('default', gulp.parallel('scss', 'js', 'watch'))
+gulp.task('build', gulp.series('scss', 'js'))

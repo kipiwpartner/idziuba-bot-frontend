@@ -21,7 +21,7 @@ class CtrlBase extends BaseController
     /**
      * @return array
      */
-    protected function getBaseTemplate(): array
+    protected function getCtrlBaseTemplate(): array
     {
         helper(['langObject']);
         return [
