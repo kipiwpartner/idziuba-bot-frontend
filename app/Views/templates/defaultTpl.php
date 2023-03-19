@@ -11,9 +11,13 @@
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-plus"></script>
     <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+
+    <!-- import Axios -->
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <!-- import owns files -->
     <link rel="stylesheet" href="<?=base_url()?>assets/css/main.css">
     <script type="text/javascript" src="<?=base_url()?>assets/js/main.bundle.js"></script>
+    <?= csrf_meta() ?>
     <title>Document</title>
 </head>
 <body>
