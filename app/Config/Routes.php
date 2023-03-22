@@ -35,7 +35,16 @@ $routes->set404Override();
 $routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers'], static function ($routes) {
     $routes->get('/', 'Home::index');
     $routes->get('login', 'Login::login');
-    $routes->match(['post'], 'onAxiosCall', 'Login::onAxiosCall');
+});
+
+/*
+ * --------------------------------------------------------------------
+ * Axios Routing
+ * --------------------------------------------------------------------
+ */
+$routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers'], static function ($routes) {
+    $routes->match(['post'], 'auth/onAxiosCall', 'Auth::onAxiosCall');
+    $routes->match(['post'], 'login/onAxiosCall', 'Login::onAxiosCall');
 });
 
 /*

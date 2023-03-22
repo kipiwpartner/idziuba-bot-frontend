@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Controllers\DefaultControllers;
+namespace App\Models\Rules\Auth;
 
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\Rules\AbstractRulesValidation;
+use CodeIgniter\HTTP\Request;
 use CodeIgniter\Validation\ValidationInterface;
-use Config\CURLCommon;
 use Config\Services;
 
-class Login extends DefaultCtrl
+class RulesAuthValidation implements AbstractRulesValidation
 {
-    const pageView = "pagesView/default/login/indexTpl";
-    const pageVue = "pagesVue/default/login/indexTplVue";
 
     private ValidationInterface $validation;
 
@@ -20,19 +18,10 @@ class Login extends DefaultCtrl
     }
 
     /**
-     * @return string
+     * @param Request $request
+     * @return array
      */
-    public function login(): string
-    {
-//        $curl = new CURLCommon();
-//        $response = $curl->client->get('/role/list');
-        return view(self::DEFAULT_TEMPLATE, ['data' => [...$this->getLoginTemplate()]] );
-    }
-
-    /**
-     * @return ResponseInterface
-     */
-    public function onAxiosCall(): ResponseInterface
+    public function validatePost(Request $request): array
     {
         $this->validation->reset();
         $this->validation->setRules(
@@ -55,26 +44,16 @@ class Login extends DefaultCtrl
                 ],
             ]
         );
-        $check = $this->validation->withRequest($this->request)->run();
-        $data = [
+        $check = $this->validation->withRequest($request)->run();
+        return [
             "validation" => $check,
             "errors" => $this->validation->getErrors(),
-            "result" => true
+            "result" => $check
         ];
-        return $this->response->setJSON($data);
     }
 
-    /**
-     * @return array
-     */
-    public function getLoginTemplate(): array
+    public function validateGet(): array
     {
-        $data = [
-            'pageView' => self::pageView,
-            'pageVue' => self::pageVue,
-            'test' => 'Value from Controller',
-            ...parent::getDefaultTemplate()
-        ];
-        return $data;
+        return [];
     }
 }

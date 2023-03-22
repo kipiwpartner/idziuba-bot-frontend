@@ -7,6 +7,10 @@ class CtrlBase extends BaseController
 {
     private string $locale;
 
+    const onAxiosCalls = [
+        "auth" => "auth/onAxiosCall",
+        "login" => "login/onAxiosCall"
+    ];
     public function __construct(){}
 
     /**
@@ -25,7 +29,8 @@ class CtrlBase extends BaseController
     {
         helper(['langObject']);
         return [
-            "locale" => $this->getLocale()
+            "locale" => $this->getLocale(),
+            "onAxiosCalls" => self::onAxiosCalls
         ];
     }
 }
