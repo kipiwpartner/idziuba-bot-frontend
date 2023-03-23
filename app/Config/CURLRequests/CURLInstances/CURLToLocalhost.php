@@ -1,10 +1,13 @@
 <?php
 
-namespace Config;
+namespace Config\CURLRequests\CURLInstances;
 
-use \Config\CURLRequest;
+use CodeIgniter\HTTP\Response;
+use CodeIgniter\HTTP\URI;
+use Config\App;
+use Config\CURLRequest;
 
-class CURLCommon extends CURLRequest
+class CURLToLocalhost extends CURLRequest
 {
     public string $baseURI = '';
 
@@ -19,9 +22,9 @@ class CURLCommon extends CURLRequest
     {
         parent::__construct();
         $this->client = new \CodeIgniter\HTTP\CURLRequest(
-            new \Config\App(),
-            new \CodeIgniter\HTTP\URI(),
-            new \CodeIgniter\HTTP\Response(new \Config\App()),
+            new App(),
+            new URI(),
+            new Response(new App()),
             [
                 'headers' => [
                     'User-Agent' => $this->userAgent,
@@ -35,9 +38,5 @@ class CURLCommon extends CURLRequest
                 'baseURI' => $this->baseURI
             ]
         );
-    }
-
-    public function onRequestCall(string $method){
-
     }
 }

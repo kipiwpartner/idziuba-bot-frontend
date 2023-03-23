@@ -52,7 +52,17 @@ class RulesAuthValidation implements AbstractRulesValidation
         ];
     }
 
-    public function validateGet(): array
+    public function validateGet(Request $request): array
+    {
+        return [];
+    }
+
+    public function validatePut(Request $request): array
+    {
+        return [];
+    }
+
+    public function validateDelete(Request $request): array
     {
         return [];
     }

@@ -4,7 +4,6 @@ namespace App\Controllers\DefaultControllers;
 
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Validation\ValidationInterface;
-use Config\CURLCommon;
 use Config\Services;
 
 class Login extends DefaultCtrl

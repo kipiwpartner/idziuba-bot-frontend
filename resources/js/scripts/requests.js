@@ -48,13 +48,6 @@ function requests() {
                         console.error(error);
                     }
                     break;
-                case 'patch':
-                    try {
-                        return instance.patch(url, data, this.getOptions());
-                    } catch (error) {
-                        console.error(error);
-                    }
-                    break;
                 case 'delete':
                     try {
                         return instance.delete(url, data, this.getOptions());
@@ -63,7 +56,7 @@ function requests() {
                     }
                     break;
                 default:
-                    console.log(`Bad method ${method}`)
+                    console.log(`404.... ${method}`)
             }
             },
         /**
