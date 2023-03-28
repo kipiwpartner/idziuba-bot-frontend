@@ -10,10 +10,17 @@ return [
         'required' => 'Required',
         'valid_email' => 'Invalid {field}',
         'min_length' => 'Bad length {param}',
-        'bad_request' => 'Bad request'
+        'bad_request' => 'Bad request',
+        'form_invalid' => 'Please check your form\'s data'
     ],
     'placeholders' => [
-        'email' => 'Please input your e-mail',
-        'password' => 'Please input your password'
+        'email' => 'Enter your e-mail address',
+        'password' => 'Enter your password'
+    ],
+    'titles' => [
+        'error' => 'Error'
+    ],
+    'messages' => [
+        'form_invalid' => 'Please check form\'s data'
     ]
 ];

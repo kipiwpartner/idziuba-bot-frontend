@@ -1,11 +1,10 @@
 <script type="text/x-template" id="index-login-default-template">
     <div class="cb-form">
-        <h1>Login Vue {{this.data.test}}</h1>
+        <h1 class="text-blue-600">Login Vue {{this.data.test}}</h1>
         <el-form
                 :label-position="'top'"
                 label-width="100px"
                 :model="modelForm"
-                style="max-width: 460px"
         >
             <div class="cb-form__field">
                 <el-form-item :label="this.labels.email" :class="'is-error is-required'">
@@ -16,23 +15,34 @@
                             :placeholder="placeholders.email"
                             clearable
                     />
-                    <div class="el-form-item__error">Please input activity form</div>
+                    <div
+                            class="el-form-item__error"
+                            id="emailError"
+                            name="emailError"
+                    >
+                        Please input email
+                    </div>
                 </el-form-item>
             </div>
             <div class="cb-form__field">
-                <label id="passwordLabel" class="cb-form__field__label">{{this.labels.password}}</label>
-                <el-input
-                        v-model="modelForm.password"
-                        type="password"
-                        :placeholder="placeholders.password"
-                        show-password
-                        name="password"
-                        id="password"
-                        class="cb-form__field__input"
-                />
-                <p class="cb-form__field__error">Hello </p>
+                <el-form-item :label="this.labels.password" :class="'is-error'">
+                    <el-input
+                            v-model="modelForm.password"
+                            id="password"
+                            name="password"
+                            :placeholder="placeholders.password"
+                            show-password
+                            class="cb-form__field__input"
+                    />
+                    <div
+                            class="el-form-item__error"
+                            id="passwordError"
+                            name="passwordError"
+                    >
+                        Please input password
+                    </div>
+                </el-form-item>
             </div>
-
         </el-form>
 
 
@@ -51,21 +61,17 @@
         methods: {
             handleClick: async function () {
                 let data = await mainScripts.onAxiosCall(this.data.onAxiosCalls.auth,
-                    {'email':'fdsfsdf', 'password':'mamaTest'},
+                    {'email': this.modelForm.email, 'password': this.modelForm.password},
                     'POST'
                 )
                 console.log(data)
             },
             open4: function () {
-                this.$notify({
-                    title: 'Error',
-                    message: this.labels.password,
-                    type: 'error',
-                })
+                mainScripts.notify(this.$notify, this.titles.error, this.messages.form_invalid,'error')
             }
         },
         mounted() {
-            console.log(this.data.onAxiosCalls.login)
+            console.log()
         },
         data() {
             return {
@@ -73,7 +79,9 @@
                 data: <?= json_encode($data) ?>,
                 lang: <?= json_encode( langObj('Translate.lang')) ?>,
                 labels: <?= json_encode( langObj('Rules.labels')) ?>,
-                placeholders: <?= json_encode( langObj('Rules.placeholders')) ?>
+                placeholders: <?= json_encode( langObj('Rules.placeholders')) ?>,
+                titles: <?= json_encode( langObj('Rules.titles')) ?>,
+                messages: <?= json_encode( langObj('Rules.messages')) ?>
             }
         }
     });

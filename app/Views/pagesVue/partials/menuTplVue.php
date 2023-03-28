@@ -3,7 +3,7 @@
         <el-menu
                 default-active="2"
                 class="el-menu-vertical-demo"
-                :collapse="false"
+                :collapse="collapse"
         >
             <el-sub-menu index="1">
                 <template #title>
@@ -50,14 +50,21 @@
     partialMenuTplVue.component("menu-partial-default", {
         template: "#menu-partial-default-template",
         methods: {
-
+            resisePageMobile: function () {
+                if (window.innerWidth <= 640) {
+                    this.collapse = true
+                } else {
+                    this.collapse = false
+                }
+            }
         },
         mounted() {
-
+            window.addEventListener('resize', this.resisePageMobile);
         },
         data(){
             return {
                 input:{},
+                collapse: false,
                 data: <?= json_encode($data) ?>
             }
         } });

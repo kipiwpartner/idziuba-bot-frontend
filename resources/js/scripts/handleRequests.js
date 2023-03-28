@@ -1,4 +1,4 @@
-function requests() {
+function handleRequests() {
 
     const instance = axios.create();
     const global = {};
@@ -31,7 +31,7 @@ function requests() {
                     try {
                         return instance.post(url, data, this.getOptions());
                     } catch (error) {
-                        console.error(error);
+                        console.log(error);
                     }
                     break;
                 case 'get':
@@ -73,4 +73,4 @@ function requests() {
     }
 }
 
-export default requests;
+export default handleRequests;

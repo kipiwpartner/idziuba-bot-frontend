@@ -7,11 +7,7 @@ class CtrlBase extends BaseController
 {
     private string $locale;
 
-    const onAxiosCalls = [
-        "auth" => "auth/onAxiosCall",
-        "login" => "login/onAxiosCall"
-    ];
-    public function __construct(){}
+    public function __construct(){ }
 
     /**
      * @return string
@@ -25,12 +21,22 @@ class CtrlBase extends BaseController
     /**
      * @return array
      */
+    private function getonAxiosCalls(): array
+    {
+        return [
+            'auth' => getenv('apiVersion') . "/auth/onAxiosCall"
+        ];
+    }
+
+    /**
+     * @return array
+     */
     protected function getCtrlBaseTemplate(): array
     {
         helper(['langObject']);
         return [
             "locale" => $this->getLocale(),
-            "onAxiosCalls" => self::onAxiosCalls
+            "onAxiosCalls" => $this->getonAxiosCalls()
         ];
     }
 }

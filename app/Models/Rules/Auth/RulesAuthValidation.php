@@ -46,9 +46,8 @@ class RulesAuthValidation implements AbstractRulesValidation
         );
         $check = $this->validation->withRequest($request)->run();
         return [
-            "validation" => $check,
-            "errors" => $this->validation->getErrors(),
-            "result" => $check
+            "result" => $check,
+            "errors" => $this->validation->getErrors()
         ];
     }
 

@@ -1,10 +1,12 @@
 import core from "./core.js"
-import requests from "./requests.js"
+import handleRequests from "./handleRequests.js"
+import handleForms from "./handleForms.js"
 
 function main() {
     const main = {
         ...core(),
-        ...requests()
+        ...handleRequests(),
+        ...handleForms(core)
     }
     return main;
 }

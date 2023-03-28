@@ -39,12 +39,11 @@ $routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers']
 
 /*
  * --------------------------------------------------------------------
- * Axios Routing
+ * Axios Routing API v1
  * --------------------------------------------------------------------
  */
-$routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers'], static function ($routes) {
-    $routes->match(['post'], 'auth/onAxiosCall', 'Auth::onAxiosCall');
-    $routes->match(['post'], 'login/onAxiosCall', 'Login::onAxiosCall');
+$routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers\API\v1'], static function ($routes) {
+    $routes->match(['post'], getenv('apiVersion') . '/auth/onAxiosCall', 'Auth::onAxiosCall');
 });
 
 /*
