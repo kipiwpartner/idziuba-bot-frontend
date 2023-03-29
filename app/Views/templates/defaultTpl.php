@@ -23,6 +23,9 @@
 </head>
 <body>
     <div id="app">
+        <div class="">
+            <?= view($data['horizontalMenuView']) ?>
+        </div>
         <div class="content flex">
             <div class="">
                 <?= view($data['partialMenuView']) ?>

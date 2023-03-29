@@ -21,6 +21,8 @@ class DefaultCtrl extends CtrlBase
         $data = [
             "partialMenuView" => "pagesView/partials/menuTpl",
             "partialMenuVue" => "pagesVue/partials/menuTplVue",
+            "horizontalMenuView" => "pagesView/partials/horizontalMenuTpl",
+            "horizontalMenuVue" => "pagesVue/partials/horizontalMenuVue",
             ...parent::getCtrlBaseTemplate()
         ];
         return $data;
