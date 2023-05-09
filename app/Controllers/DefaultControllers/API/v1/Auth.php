@@ -6,22 +6,18 @@ use App\Controllers\DefaultControllers\DefaultCtrl;
 use App\Models\Rules\Auth\RulesAuthFactory;
 use App\Models\Rules\ValidationRules;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\Validation\ValidationInterface;
+use Config\CURLRequests\CURLInstances\CURLToGraphQL;
 use Config\CURLRequests\CURLInstances\CURLToLocalhost;
 use Config\CURLRequests\CURLToLocalhost\CURLToCreator\CURLToCreatorToAuth;
-use Config\Services;
 use CodeIgniter\API\ResponseTrait;
 
 class Auth extends DefaultCtrl
 {
     use ResponseTrait;
 
-    private ValidationInterface $validation;
-
     public function __construct()
     {
         parent::__construct();
-        $this->validation = Services::validation();
     }
 
     /**
@@ -30,12 +26,18 @@ class Auth extends DefaultCtrl
     public function onAxiosCall(): ResponseInterface
     {
         $validationRules = new ValidationRules();
-        $validation = $validationRules->validateFields(new RulesAuthFactory(), $this->request);;
-        $curl = new CURLToLocalhost();
-        $curlCreator = new CURLToCreatorToAuth();
+        $validation = $validationRules->validateFields(new RulesAuthFactory(), $this->request);
 
-        $response["resp"] = $curlCreator->doRequest($this->request->getMethod(), $curl, $this->request->getJSON());
+        $curlToLocalhost = new CURLToLocalhost();
+        $curlCreatorToAuth = new CURLToCreatorToAuth();
+
+        $response["resp"] = $curlCreatorToAuth->doRequest($this->request->getMethod(), $curlToLocalhost, $this->request->getJSON());
         $response["validation"] = $validation;
+
+        /*  GraphQL test */
+        $graphQL = new CURLToGraphQL();
+        $a = $graphQL->getAllRoles();
+
         return $this->respond($response, 200);
     }
 
