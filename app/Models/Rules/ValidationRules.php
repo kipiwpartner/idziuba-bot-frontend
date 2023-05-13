@@ -16,14 +16,13 @@ class ValidationRules
         $validation = $factory->createRules();
         switch ($request->getMethod()) {
             case 'get':
-                break;
+                $validation->validateGet($request);
             case 'post':
                 return $validation->validatePost($request);
-                break;
-//            case 'put':
-//                break;
-//            case 'patch':
-//                break;
+            case 'put':
+                return $validation->validatePut($request);
+            case 'patch':
+                $validation->validatePatch($request);
             default:
                 return [
                     "errors" => lang('Rules.errors.bad_request'),

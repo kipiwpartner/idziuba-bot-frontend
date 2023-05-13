@@ -21,10 +21,20 @@ class CtrlBase extends BaseController
     /**
      * @return array
      */
-    private function getonAxiosCalls(): array
+    private function getOnAxiosCallsAPI(): array
     {
         return [
-            'auth' => getenv('apiVersion') . "/auth/onAxiosCall"
+            'auth' => getenv('apiVersionToPHP') . "/auth/onAxiosCall"
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function getOnAxiosCallsGraphQL(): array
+    {
+        return [
+            'login' => "auth/login"
         ];
     }
 
@@ -36,7 +46,8 @@ class CtrlBase extends BaseController
         helper(['langObject']);
         return [
             "locale" => $this->getLocale(),
-            "onAxiosCalls" => $this->getonAxiosCalls()
+            "axiosAPI" => $this->getOnAxiosCallsAPI(),
+            "axiosGraphQL" => $this->getOnAxiosCallsGraphQL()
         ];
     }
 }

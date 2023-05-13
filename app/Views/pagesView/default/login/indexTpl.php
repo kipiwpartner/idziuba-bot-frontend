@@ -5,5 +5,5 @@
 </div>
 
 <script>
-    loginIndexTplVue.mount('#index-login-default')
+    loginIndexVue.mount('#index-login-default')
 </script>

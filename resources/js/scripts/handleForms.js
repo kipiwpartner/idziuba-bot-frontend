@@ -20,7 +20,7 @@ function handleForms(core) {
         setError: function (id, mandatory) {
 
         },
-        setErrorArray: function (id) {
+        setErrorArray: function (arr) {
 
         },
         resetError: function (id) {

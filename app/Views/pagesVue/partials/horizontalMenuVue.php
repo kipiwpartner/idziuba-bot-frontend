@@ -1,5 +1,5 @@
 <script type="text/x-template" id="menu-horizontal-template">
-    <div class="px-8 menu-horizontal-template">
+    <div class="px-8 menu-horizontal">
         <el-menu
                 :default-active="'1'"
                 class="el-menu-demo"
@@ -27,12 +27,12 @@
 </script>
 
 <script>
-    const horizontalMenuTplVue = Vue.createApp({})
+    const horizontalMenuVue = Vue.createApp({})
     for ([name, comp] of Object.entries(ElementPlusIconsVue)) {
-        horizontalMenuTplVue.component(name, comp);
+        horizontalMenuVue.component(name, comp);
     }
-    horizontalMenuTplVue.use(ElementPlus);
-    horizontalMenuTplVue.component("menu-horizontal", {
+    horizontalMenuVue.use(ElementPlus);
+    horizontalMenuVue.component("menu-horizontal", {
         template: "#menu-horizontal-template",
         // handleSelect = (key: string, keyPath: string[]) => {
         //     console.log(key, keyPath)

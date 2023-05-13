@@ -1,5 +1,5 @@
-<script type="text/x-template" id="menu-partial-default-template">
-    <div class="menu-partial-default">
+<script type="text/x-template" id="menu-vertical-template">
+    <div class="menu-vertical">
         <el-menu
                 default-active="2"
                 class="el-menu-vertical-demo"
@@ -42,13 +42,13 @@
 </script>
 
 <script>
-    const partialMenuTplVue = Vue.createApp({})
+    const verticalMenu = Vue.createApp({})
     for ([name, comp] of Object.entries(ElementPlusIconsVue)) {
-        partialMenuTplVue.component(name, comp);
+        verticalMenu.component(name, comp);
     }
-    partialMenuTplVue.use(ElementPlus);
-    partialMenuTplVue.component("menu-partial-default", {
-        template: "#menu-partial-default-template",
+    verticalMenu.use(ElementPlus);
+    verticalMenu.component("menu-vertical", {
+        template: "#menu-vertical-template",
         methods: {
             resisePageMobile: function () {
                 if (window.innerWidth <= 640) {

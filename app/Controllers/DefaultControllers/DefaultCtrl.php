@@ -19,10 +19,15 @@ class DefaultCtrl extends CtrlBase
     protected function getDefaultTemplate(): array
     {
         $data = [
-            "partialMenuView" => "pagesView/partials/menuTpl",
-            "partialMenuVue" => "pagesVue/partials/menuTplVue",
+            //Vertical Menu
+            "verticalMenuView" => "pagesView/partials/verticalMenuTpl",
+            "verticalMenuVue" => "pagesVue/partials/verticalMenuVue",
+            //Horizontal Menu
             "horizontalMenuView" => "pagesView/partials/horizontalMenuTpl",
             "horizontalMenuVue" => "pagesVue/partials/horizontalMenuVue",
+            //zTest Vue with Two Components
+//            "pageTestMainContainerView" => "pagesView/partials/zPageTestMainContainerTpl",
+//            "pageTestMainContainerVue" => "pagesVue/partials/zPageTestMainContainerVue",
             ...parent::getCtrlBaseTemplate()
         ];
         return $data;

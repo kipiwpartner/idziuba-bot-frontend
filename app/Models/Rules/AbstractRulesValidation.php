@@ -10,4 +10,5 @@ interface AbstractRulesValidation
     public function validateGet(Request $request) : array;
     public function validatePut(Request $request) : array;
     public function validateDelete(Request $request) : array;
+    public function validatePatch(Request $request) : array;
 }

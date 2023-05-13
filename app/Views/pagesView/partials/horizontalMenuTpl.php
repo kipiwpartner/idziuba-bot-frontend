@@ -5,5 +5,5 @@
 </div>
 
 <script>
-    horizontalMenuTplVue.mount('#menu-horizontal-tpl')
+    horizontalMenuVue.mount('#menu-horizontal-tpl')
 </script>

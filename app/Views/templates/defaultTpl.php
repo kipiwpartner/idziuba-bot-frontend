@@ -23,12 +23,12 @@
 </head>
 <body>
     <div id="app">
-        <div class="">
+        <div class="horizontalMenu">
             <?= view($data['horizontalMenuView']) ?>
         </div>
         <div class="content flex">
             <div class="">
-                <?= view($data['partialMenuView']) ?>
+                <?= view($data['verticalMenuView']) ?>
             </div>
             <div class="flex justify-center w-full px-8">
                 <?= view($data['pageView']) ?>

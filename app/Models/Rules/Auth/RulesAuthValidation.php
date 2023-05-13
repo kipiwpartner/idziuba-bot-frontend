@@ -36,7 +36,7 @@ class RulesAuthValidation implements AbstractRulesValidation
                 ],
                 'password' => [
                     'label'  => 'Rules.labels.password',
-                    'rules'  => 'required|min_length[10]',
+                    'rules'  => 'required|min_length[5]',
                     'errors' => [
                         'required' => 'Rules.errors.required',
                         'min_length' => 'Rules.errors.min_length',
@@ -62,6 +62,11 @@ class RulesAuthValidation implements AbstractRulesValidation
     }
 
     public function validateDelete(Request $request): array
+    {
+        return [];
+    }
+
+    public function validatePatch(Request $request): array
     {
         return [];
     }

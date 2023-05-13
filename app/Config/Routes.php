@@ -43,7 +43,16 @@ $routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers']
  * --------------------------------------------------------------------
  */
 $routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers\API\v1'], static function ($routes) {
-    $routes->match(['post'], getenv('apiVersion') . '/auth/onAxiosCall', 'Auth::onAxiosCall');
+    $routes->match(['post'], getenv('apiVersionToPHP') . '/auth/onAxiosCall', 'Auth::onAxiosCall');
+});
+
+/*
+ * --------------------------------------------------------------------
+ * GraphQL Routing
+ * --------------------------------------------------------------------
+ */
+$routes->group('{locale}', ['namespace' => 'App\Controllers\DefaultControllers\GraphQL'], static function ($routes) {
+    $routes->match(['post'], 'auth/login', 'Auth::Login');
 });
 
 /*
