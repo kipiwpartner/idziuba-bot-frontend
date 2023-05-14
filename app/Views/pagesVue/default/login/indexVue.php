@@ -16,8 +16,8 @@
                 <buttonComponentSendApi />
                 <buttonComponentSendGraphQL />
             </div>
-            <el-button plain @click="open4"> Error </el-button>
-            <p>{{this.lang.test}}</p>
+
+            <buttonComponentNotify />
         </div>
     </el-container>
 </script>
@@ -27,6 +27,11 @@
 
     const authModel = {
         email: '',
+        password: ''
+    }
+
+    const templates = {
+        button: '#button-component-template',
         password: ''
     }
 
@@ -45,10 +50,10 @@
                 data() {
                     return {
                         vmodel: authModel.email,
-                        vbind: {'clearable':true},
-                        label: <?= json_encode( lang('Rules.labels.email')) ?>,
                         id: 'email',
-                        placeholder: '<?= lang('Rules.placeholders.email') ?>'
+                        label: <?= json_encode( lang('Form.labels.email')) ?>,
+                        placeholder: '<?= lang('Form.placeholders.email') ?>',
+                        vbind: {'clearable':true}
                     }
                 }
             },
@@ -62,16 +67,16 @@
                 data() {
                     return {
                         vmodel: authModel.password,
-                        vbind: {'show-password':true},
-                        label: <?= json_encode( lang('Rules.labels.password')) ?>,
                         id: 'password',
-                        placeholder: '<?= lang('Rules.placeholders.password') ?>'
+                        label: <?= json_encode( lang('Form.labels.password')) ?>,
+                        placeholder: '<?= lang('Form.placeholders.password') ?>',
+                        vbind: {'show-password':true}
                     }
                 }
             },
             /* Buttons */
             'buttonComponentSendApi': {
-                template: '#button-component-template',
+                template: templates.button,
                 methods: {
                     handleClick: async function (e) {
                         this.$parent.$parent.loading = true
@@ -88,7 +93,7 @@
                     return {
                         type: 'primary',
                         vbind: {'round': true},
-                        title:  <?= json_encode(lang('Translate.lang.btn_send')) ?> + ' Api',
+                        title:  <?= json_encode(lang('Form.buttons.send')) ?> + ' Api',
                         data: <?= json_encode($data) ?>
                     }
                 }
@@ -111,26 +116,33 @@
                     return {
                         type: 'info',
                         vbind: {},
-                        title: <?= json_encode(lang('Translate.lang.btn_send')) ?> + ' GraphQL',
+                        title: <?= json_encode(lang('Form.buttons.send')) ?> + ' GraphQL',
+                        data: <?= json_encode($data) ?>
+                    }
+                }
+            },
+            'buttonComponentNotify': {
+                template: '#button-component-template',
+                methods: {
+                    handleClick: function (e) {
+                        mainScripts.notify(this.$notify, this.data.lang.notify.titles.error, this.data.lang.notify.msg.form_invalid, 'error')
+                        e.target.parentNode.blur();
+                    }
+                },
+                data() {
+                    return {
+                        type: '',
+                        vbind: { 'plain': true },
+                        title: <?= json_encode(lang('Form.buttons.notify')) ?> + ' GraphQL',
                         data: <?= json_encode($data) ?>
                     }
                 }
             }
         },
-        methods: {
-            open4: function () {
-                mainScripts.notify(this.$notify, this.titles.error, this.messages.form_invalid,'error')
-            }
-        },
         data() {
             return {
                 loading: false,
-                data: <?= json_encode($data) ?>,
-                lang: <?= json_encode( langObj('Translate.lang')) ?>,
-                labels: <?= json_encode( langObj('Rules.labels')) ?>,
-                placeholders: <?= json_encode( langObj('Rules.placeholders')) ?>,
-                titles: <?= json_encode( langObj('Rules.titles')) ?>,
-                messages: <?= json_encode( langObj('Rules.messages')) ?>
+                data: <?= json_encode($data) ?>
             }
         }
     });

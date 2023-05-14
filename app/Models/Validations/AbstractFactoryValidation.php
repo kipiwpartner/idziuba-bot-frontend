@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Rules;
+namespace App\Models\Validations;
 
 interface AbstractFactoryValidation
 {

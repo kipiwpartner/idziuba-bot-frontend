@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models\Rules\Auth;
+namespace App\Models\Validations\Auth;
 
-use App\Models\Rules\AbstractRulesValidation;
+use App\Models\Validations\AbstractRulesValidation;
+use App\Models\Validations\Rules\RulesValidation;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\Validation\ValidationInterface;
 use Config\Services;
 
-class RulesAuthValidation implements AbstractRulesValidation
+class LoginValidation implements AbstractRulesValidation
 {
-
     private ValidationInterface $validation;
 
     public function __construct()
@@ -26,22 +26,8 @@ class RulesAuthValidation implements AbstractRulesValidation
         $this->validation->reset();
         $this->validation->setRules(
             [
-                'email' => [
-                    'label'  => 'Rules.labels.email',
-                    'rules'  => 'required|valid_email',
-                    'errors' => [
-                        'required' => 'Rules.errors.required',
-                        'valid_email' => 'Rules.errors.valid_email'
-                    ],
-                ],
-                'password' => [
-                    'label'  => 'Rules.labels.password',
-                    'rules'  => 'required|min_length[5]',
-                    'errors' => [
-                        'required' => 'Rules.errors.required',
-                        'min_length' => 'Rules.errors.min_length',
-                    ],
-                ],
+                'email' => RulesValidation::getEmailRule(),
+                'password' => RulesValidation::getPasswordRule()
             ]
         );
         $check = $this->validation->withRequest($request)->run();

@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Models\Rules;
+namespace App\Models\Validations;
 
 use CodeIgniter\HTTP\Request;
 
 class ValidationRules
 {
+    public function __construct()
+    {
+    }
+
     /**
      * @param AbstractFactoryValidation $factory
      * @param Request $request
@@ -25,7 +29,7 @@ class ValidationRules
                 $validation->validatePatch($request);
             default:
                 return [
-                    "errors" => lang('Rules.errors.bad_request'),
+                    "errors" => lang('Notify.msg.bad_request'),
                     "result" => false
                 ];
         }

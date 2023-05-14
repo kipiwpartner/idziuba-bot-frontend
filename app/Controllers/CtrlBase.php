@@ -21,7 +21,7 @@ class CtrlBase extends BaseController
     /**
      * @return array
      */
-    private function getOnAxiosCallsAPI(): array
+    private function getOnAxiosRoutesAPI(): array
     {
         return [
             'auth' => getenv('apiVersionToPHP') . "/auth/onAxiosCall"
@@ -31,7 +31,7 @@ class CtrlBase extends BaseController
     /**
      * @return array
      */
-    private function getOnAxiosCallsGraphQL(): array
+    private function getOnAxiosRoutesGraphQL(): array
     {
         return [
             'login' => "auth/login"
@@ -45,9 +45,21 @@ class CtrlBase extends BaseController
     {
         helper(['langObject']);
         return [
+            "lang" => [
+                "translate" => langObj('Translate.lang'),
+                "form" => [
+                    "labels" => langObj('Form.labels'),
+                    "placeholders" => langObj('Form.placeholders'),
+                    "errors" => langObj('Form.errors'),
+                    ],
+                "notify" => [
+                    "titles" => langObj('Notify.titles'),
+                    "msg" => langObj('Notify.msg')
+                    ]
+                ],
             "locale" => $this->getLocale(),
-            "axiosAPI" => $this->getOnAxiosCallsAPI(),
-            "axiosGraphQL" => $this->getOnAxiosCallsGraphQL()
+            "axiosAPI" => $this->getOnAxiosRoutesAPI(),
+            "axiosGraphQL" => $this->getOnAxiosRoutesGraphQL()
         ];
     }
 }
