@@ -1,4 +1,4 @@
-function handleRequests() {
+function handleAxios() {
 
     const instance = axios.create();
     const global = {};
@@ -73,4 +73,4 @@ function handleRequests() {
     }
 }
 
-export default handleRequests;
+export default handleAxios;

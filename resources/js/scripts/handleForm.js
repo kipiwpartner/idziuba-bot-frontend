@@ -1,22 +1,6 @@
-function handleForms(core) {
+function handleForm(core) {
     const formCore = core();
     return {
-        /**
-         *
-         * @param notify
-         * @param {string} title
-         * @param {string} message
-         * @param {string} type
-         */
-        notify: function (notify, title, message, type) {
-            console.log(formCore.elById('email' + 'Error'))
-            notify({
-                title: title,
-                message: message,
-                type: type,
-            })
-
-        },
         setError: function (id, msg) {
             const errorNode = formCore.elById(`${id}Error`)
             errorNode.innerHTML = msg
@@ -40,4 +24,4 @@ function handleForms(core) {
     }
 }
 
-export default handleForms;
+export default handleForm;

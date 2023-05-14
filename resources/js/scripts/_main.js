@@ -1,12 +1,14 @@
 import core from "./core.js"
-import handleRequests from "./handleRequests.js"
-import handleForms from "./handleForms.js"
+import handleAxios from "./handleAxios.js"
+import handleForm from "./handleForm.js"
+import handleNotify from "./handleNotify.js"
 
 function main() {
     const main = {
         ...core(),
-        ...handleRequests(),
-        ...handleForms(core),
+        ...handleAxios(),
+        ...handleForm(core),
+        ...handleNotify()
     }
     return main;
 }

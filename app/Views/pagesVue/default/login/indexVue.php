@@ -121,6 +121,7 @@
                             mainScripts.setErrorArray(resp.data.validation.errors)
                         }
                         this.$parent.$parent.loading = false
+                        console.log(resp)
                     }
                 },
                 data() {
