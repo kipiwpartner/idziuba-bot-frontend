@@ -12,7 +12,7 @@
                 <inputComponentEmail />
                 <inputComponentPassword />
             </el-form>
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-between mt-5">
                 <buttonComponentSendApi />
                 <buttonComponentSendGraphQL />
             </div>
@@ -32,6 +32,7 @@
 
     const templates = {
         button: '#button-component-template',
+        input: '#input-component-template',
         password: ''
     }
 
@@ -41,7 +42,7 @@
         components: {
             /* Inputs */
             'inputComponentEmail': {
-                template: '#input-component-template',
+                template: templates.input,
                 methods: {
                     handleInput: function (val) {
                         authModel.email = val;
@@ -58,7 +59,7 @@
                 }
             },
             'inputComponentPassword': {
-                template: '#input-component-template',
+                template: templates.input,
                 methods: {
                     handleInput: function (val) {
                         authModel.password = val;
@@ -80,12 +81,17 @@
                 methods: {
                     handleClick: async function (e) {
                         this.$parent.$parent.loading = true
-                        let data = await mainScripts.onAxiosCall(this.data.axiosAPI.auth,
+                        let data = this.$parent.$parent.data
+
+                        let resp = await mainScripts.onAxiosCall(data.axiosAPI.auth,
                             authModel,
                             'POST'
                         )
                         e.target.parentNode.blur();
-                        console.log(data)
+                        mainScripts.resetErrorArray(authModel)
+                        if (!resp.data.validation.result) {
+                            mainScripts.setErrorArray(resp.data.validation.errors)
+                        }
                         this.$parent.$parent.loading = false
                     }
                 },
@@ -93,22 +99,27 @@
                     return {
                         type: 'primary',
                         vbind: {'round': true},
-                        title:  <?= json_encode(lang('Form.buttons.send')) ?> + ' Api',
-                        data: <?= json_encode($data) ?>
+                        title:  <?= json_encode(lang('Form.buttons.send')) ?> + ' Api'
                     }
                 }
             },
             'buttonComponentSendGraphQL': {
-                template: '#button-component-template',
+                template: templates.button,
                 methods: {
                     handleClick: async function (e) {
                         this.$parent.$parent.loading = true
-                        let data = await mainScripts.onAxiosCall(this.data.axiosGraphQL.login,
+                        let data = this.$parent.$parent.data
+
+                        let resp = await mainScripts.onAxiosCall(data.axiosGraphQL.login,
                             authModel,
                             'POST'
                         )
                         e.target.parentNode.blur();
-                        console.log(data)
+
+                        mainScripts.resetErrorArray(authModel)
+                        if (!resp.data.validation.result) {
+                            mainScripts.setErrorArray(resp.data.validation.errors)
+                        }
                         this.$parent.$parent.loading = false
                     }
                 },
@@ -116,25 +127,25 @@
                     return {
                         type: 'info',
                         vbind: {},
-                        title: <?= json_encode(lang('Form.buttons.send')) ?> + ' GraphQL',
-                        data: <?= json_encode($data) ?>
+                        title: <?= json_encode(lang('Form.buttons.send')) ?> + ' GraphQL'
                     }
                 }
             },
             'buttonComponentNotify': {
-                template: '#button-component-template',
+                template: templates.button,
                 methods: {
                     handleClick: function (e) {
-                        mainScripts.notify(this.$notify, this.data.lang.notify.titles.error, this.data.lang.notify.msg.form_invalid, 'error')
+                        let data = this.$parent.$parent.data
+                        mainScripts.notify(this.$notify, data.lang.notify.titles.error, data.lang.notify.msg.form_invalid, 'error')
                         e.target.parentNode.blur();
+
                     }
                 },
                 data() {
                     return {
                         type: '',
                         vbind: { 'plain': true },
-                        title: <?= json_encode(lang('Form.buttons.notify')) ?> + ' GraphQL',
-                        data: <?= json_encode($data) ?>
+                        title: <?= json_encode(lang('Form.buttons.notify')) ?> + ' GraphQL'
                     }
                 }
             }

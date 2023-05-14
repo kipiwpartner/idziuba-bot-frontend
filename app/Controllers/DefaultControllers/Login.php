@@ -30,7 +30,7 @@ class Login extends DefaultCtrl
             'pageVue' => self::pageVue,
             'pageTestVue' => "pagesVue/default/test/indexVue",
             'test' => 'Value from Login Controller',
-            ...parent::getDefaultTemplate()
+            ...parent::getDefaultCtrlTemplate()
         ];
         return $data;
     }

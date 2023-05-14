@@ -6,7 +6,7 @@ function main() {
     const main = {
         ...core(),
         ...handleRequests(),
-        ...handleForms(core)
+        ...handleForms(core),
     }
     return main;
 }

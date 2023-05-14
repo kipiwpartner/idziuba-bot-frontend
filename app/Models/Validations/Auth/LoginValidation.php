@@ -26,7 +26,7 @@ class LoginValidation implements AbstractRulesValidation
         $this->validation->reset();
         $this->validation->setRules(
             [
-                'email' => RulesValidation::getEmailRule(),
+                'email' => RulesValidation::getEmailRule(true),
                 'password' => RulesValidation::getPasswordRule()
             ]
         );

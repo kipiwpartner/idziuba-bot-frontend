@@ -1,4 +1,20 @@
 .cb-form {
+  .cb-form__field {
+    .el-form-item {
+      margin-bottom: 10px !important;
+    }
+
+    .el-form-item {
+      .el-form-item__label {
+        margin: 0 !important;
+      }
+      .el-form-item__error {
+        top:93% !important;
+      }
+    }
+
+  }
+
 
 }
 

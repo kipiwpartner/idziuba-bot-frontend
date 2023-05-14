@@ -16,7 +16,7 @@ class DefaultCtrl extends CtrlBase
     /**
      * @return array
      */
-    protected function getDefaultTemplate(): array
+    protected function getDefaultCtrlTemplate(): array
     {
         $data = [
             //Vertical Menu
@@ -25,9 +25,6 @@ class DefaultCtrl extends CtrlBase
             //Horizontal Menu
             "horizontalMenuView" => "pagesView/partials/horizontalMenuTpl",
             "horizontalMenuVue" => "pagesVue/partials/horizontalMenuVue",
-            //zTest Vue with Two Components
-//            "pageTestMainContainerView" => "pagesView/partials/zPageTestMainContainerTpl",
-//            "pageTestMainContainerVue" => "pagesVue/partials/zPageTestMainContainerVue",
             ...parent::getCtrlBaseTemplate()
         ];
         return $data;

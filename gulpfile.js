@@ -90,5 +90,5 @@ gulp.task('watch', function(){
     watch(paths.scripts.src, gulp.parallel('js'))
     watch(paths.viewsPPH.src, gulp.parallel('tailwind'))
 })
-gulp.task('default', gulp.parallel('scss', 'js', 'tailwind', 'watch'))
+gulp.task('dev', gulp.parallel('scss', 'js', 'tailwind', 'watch'))
 gulp.task('build', gulp.parallel('scss', 'js', 'tailwind'))
