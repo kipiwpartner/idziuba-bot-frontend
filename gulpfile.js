@@ -12,6 +12,7 @@ import cssmin from "gulp-cssmin"
 import concat from "gulp-concat"
 import webpack from "webpack-stream"
 import TerserPlugin from "terser-webpack-plugin"
+import run from 'gulp-run'
 
 const paths = {
     styles: {
@@ -25,6 +26,10 @@ const paths = {
         src_main: 'resources/js/main.js',
         src: 'resources/js/**/*.js',
         dest: 'public/assets/js'
+    },
+    viewsPPH: {
+        src_main: 'app/Views/templates/*.php',
+        src: 'app/Views/**/*.php'
     }
 };
 
@@ -46,6 +51,12 @@ gulp.task('scss', function(){
         .pipe(concat(paths.styles.name))
         .pipe(gulp.dest(paths.styles.dest))
 })
+
+gulp.task('tailwind', function() {
+    return gulp
+        .src(paths.viewsPPH.src_main)
+        .pipe(run('npm run tailwind'))
+});
 
 //JS
 gulp.task('js', function(){
@@ -77,6 +88,7 @@ gulp.task('js', function(){
 gulp.task('watch', function(){
     watch(paths.styles.src, gulp.parallel('scss'))
     watch(paths.scripts.src, gulp.parallel('js'))
+    watch(paths.viewsPPH.src, gulp.parallel('tailwind'))
 })
-gulp.task('default', gulp.parallel('scss', 'js', 'watch'))
-gulp.task('build', gulp.series('scss', 'js'))
+gulp.task('dev', gulp.parallel('scss', 'js', 'tailwind', 'watch'))
+gulp.task('build', gulp.parallel('scss', 'js', 'tailwind'))

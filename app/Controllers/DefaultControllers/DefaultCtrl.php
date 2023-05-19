@@ -16,11 +16,15 @@ class DefaultCtrl extends CtrlBase
     /**
      * @return array
      */
-    protected function getDefaultTemplate(): array
+    protected function getDefaultCtrlTemplate(): array
     {
         $data = [
-            "partialMenuView" => "pagesView/partials/menuTpl",
-            "partialMenuVue" => "pagesVue/partials/menuTplVue",
+            //Vertical Menu
+            "verticalMenuView" => "pagesView/partials/verticalMenuTpl",
+            "verticalMenuVue" => "pagesVue/partials/verticalMenuVue",
+            //Horizontal Menu
+            "horizontalMenuView" => "pagesView/partials/horizontalMenuTpl",
+            "horizontalMenuVue" => "pagesVue/partials/horizontalMenuVue",
             ...parent::getCtrlBaseTemplate()
         ];
         return $data;

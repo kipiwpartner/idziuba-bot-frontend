@@ -25,7 +25,7 @@ class Services extends BaseService
      * @param bool $getShared
      * @return LanguageObject|null
      */
-    public static function langObj(bool $getShared = true)
+    public static function langObj(bool $getShared = true): ?LanguageObject
     {
         if ($getShared) {
             return new LanguageObject();

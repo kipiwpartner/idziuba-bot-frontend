@@ -2,16 +2,14 @@
 
 namespace App\Controllers\DefaultControllers;
 
-use CodeIgniter\HTTP\ResponseInterface;
-
 class Login extends DefaultCtrl
 {
     const pageView = "pagesView/default/login/indexTpl";
-    const pageVue = "pagesVue/default/login/indexTplVue";
-    const onAxiosCall = "onAxiosCall";
+    const pageVue = "pagesVue/default/login/indexVue";
 
     public function __construct()
     {
+        parent::__construct();
     }
 
     /**
@@ -23,17 +21,6 @@ class Login extends DefaultCtrl
     }
 
     /**
-     * @return ResponseInterface
-     */
-    public function onAxiosCall(): ResponseInterface
-    {
-        $data = [
-            "test" => "Same data"
-        ];
-        return $this->response->setJSON($data);
-    }
-
-    /**
      * @return array
      */
     public function getLoginTemplate(): array
@@ -41,9 +28,9 @@ class Login extends DefaultCtrl
         $data = [
             'pageView' => self::pageView,
             'pageVue' => self::pageVue,
-            'onAxiosCall' => self::onAxiosCall,
-            'test' => 'Value from Controller',
-            ...parent::getDefaultTemplate()
+            'pageTestVue' => "pagesVue/default/test/indexVue",
+            'test' => 'Value from Login Controller',
+            ...parent::getDefaultCtrlTemplate()
         ];
         return $data;
     }
