@@ -27,7 +27,7 @@ const paths = {
         src: 'resources/js/**/*.js',
         dest: 'public/assets/js'
     },
-    viewsPPH: {
+    viewsPHP: {
         src_main: 'app/Views/templates/*.php',
         src: 'app/Views/**/*.php'
     }
@@ -54,7 +54,7 @@ gulp.task('scss', function(){
 
 gulp.task('tailwind', function() {
     return gulp
-        .src(paths.viewsPPH.src_main)
+        .src(paths.viewsPHP.src_main)
         .pipe(run('npm run tailwind'))
 });
 
@@ -88,7 +88,7 @@ gulp.task('js', function(){
 gulp.task('watch', function(){
     watch(paths.styles.src, gulp.parallel('scss'))
     watch(paths.scripts.src, gulp.parallel('js'))
-    watch(paths.viewsPPH.src, gulp.parallel('tailwind'))
+    watch(paths.viewsPHP.src, gulp.parallel('tailwind'))
 })
 gulp.task('dev', gulp.parallel('scss', 'js', 'tailwind', 'watch'))
 gulp.task('build', gulp.parallel('scss', 'js', 'tailwind'))
