@@ -26,9 +26,13 @@ class Auth extends DefaultCtrl
     {
         $validationRules = new ValidationRules();
         $response["validation"] = $validationRules->validateFields(new LoginValidationFactory(), $this->request);
-        $curlToLocalhost = new CURLToLocalhost();
-        $curlCreatorToAuth = new CURLToCreatorToAuth();
-        $response["resp"] = $curlCreatorToAuth->doRequest($this->request->getMethod(), $curlToLocalhost, $this->request->getJSON());
+        if ($response["validation"]["result"]) {
+            $curlToLocalhost = new CURLToLocalhost();
+            $curlCreatorToAuth = new CURLToCreatorToAuth();
+            $response["resp"] = $curlCreatorToAuth->doRequest($this->request->getMethod(), $curlToLocalhost, $this->request->getJSON());
+            return $this->respond($response, 200);
+        }
+        $response["resp"]["result"] = null;
         return $this->respond($response, 200);
     }
 }

@@ -90,6 +90,7 @@
                         e.target.parentNode.blur();
                         mainScripts.resetErrorArray(authModel)
                         if (!resp.data.validation.result) {
+                            mainScripts.notify(this.$notify, data.lang.notify.titles.warning, data.lang.notify.msg.form_invalid, 'warning')
                             mainScripts.setErrorArray(resp.data.validation.errors)
                         }
                         this.$parent.$parent.loading = false

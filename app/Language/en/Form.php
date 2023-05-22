@@ -15,8 +15,8 @@ return [
         'notify' => 'Notify'
     ],
     'errors' => [
-        'required' => 'Required',
-        'valid_email' => 'Invalid {field}',
-        'min_length' => 'Bad length {param}'
+        'required' => 'Field {field} is required',
+        'valid_email' => 'Field {field} is invalid',
+        'min_length' => 'Field {field} must be grater than {param} characters'
     ]
 ];
