@@ -31,5 +31,4 @@ class Auth extends DefaultCtrl
         $response["resp"] = $curlCreatorToAuth->doRequest($this->request->getMethod(), $curlToLocalhost, $this->request->getJSON());
         return $this->respond($response, 200);
     }
-
 }

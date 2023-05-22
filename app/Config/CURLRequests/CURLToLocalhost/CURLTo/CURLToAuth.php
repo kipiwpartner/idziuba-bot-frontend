@@ -14,7 +14,7 @@ class CURLToAuth implements CURLTo
 
     public function urlToPost(): string
     {
-        return getenv('apiVersionToNODEJS') . '/login';
+        return getenv('apiVersionToBack') . '/auth/login';
     }
 
     public function urlToPut(): string
