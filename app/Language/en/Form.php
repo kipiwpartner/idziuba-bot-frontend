@@ -12,7 +12,8 @@ return [
     ],
     'buttons' => [
         'send' => 'Send',
-        'notify' => 'Notify'
+        'notify' => 'Notify',
+        "auth" => "Sign in"
     ],
     'errors' => [
         'required' => 'Field {field} is required',
