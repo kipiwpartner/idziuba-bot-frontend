@@ -127,5 +127,5 @@ nb-configuration.xml
 
 /package-lock.json
 /node_modules/
-/public/assets/js/main.bundle.js
+/public/assets/js/
 /public/assets/css/

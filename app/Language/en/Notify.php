@@ -8,7 +8,7 @@ return [
         'success' => 'Success'
     ],
     'msg' => [
-        'bad_request' => 'Bad request',
+        'bad_request' => 'Internal Server Error',
         'form_invalid' => 'Form\'s data is invalid',
         'auth_success' => 'You sign in successfully'
     ]

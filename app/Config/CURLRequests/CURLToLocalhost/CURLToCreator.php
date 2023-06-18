@@ -34,8 +34,6 @@ abstract class CURLToCreator
                 } catch (\Exception $e) {
                     log_message('error', '[ERROR] {exception} {env:curltolocalhost.baseURI}/{url} ',
                         ['exception' => $e, 'url' => $curlTo->urlToPost()]);
-                    $response["result"] = false;
-                    $response["status"] = 401;
                 }
                 break;
             default:

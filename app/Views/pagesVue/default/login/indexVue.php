@@ -89,8 +89,12 @@
                         if (!resp.data.validation.result) {
                             mainScripts.notify(this.$notify, data.lang.notify.titles.error, data.lang.notify.msg.form_invalid, 'error')
                             mainScripts.setErrorArray(resp.data.validation.errors)
-                        } else if (resp.data.validation.result && resp.data.resp.result && resp.data.resp.status === 200){
+                        }
+                        if (resp.data.validation.result && resp.data.resp.result && resp.data.resp.status === 200){
                             mainScripts.notify(this.$notify, data.lang.notify.titles.success, data.lang.notify.msg.auth_success, 'success')
+                        }
+                        if (!resp.data.resp.result && resp.data.resp.status === 500){
+                            mainScripts.notify(this.$notify, data.lang.notify.titles.error, data.lang.notify.msg.bad_request, 'error')
                         }
                         this.$parent.$parent.loading = false
                     }
