@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Services\ServiceAuth;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -29,6 +30,18 @@ class Services extends BaseService
     {
         if ($getShared) {
             return new LanguageObject();
+        }
+        return null;
+    }
+
+    /**
+     * @param bool $getShared
+     * @return ServiceAuth|null
+     */
+    public static function serviceAuth(bool $getShared = true): ?ServiceAuth
+    {
+        if ($getShared) {
+            return new ServiceAuth();
         }
         return null;
     }

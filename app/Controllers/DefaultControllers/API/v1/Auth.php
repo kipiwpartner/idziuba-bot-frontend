@@ -9,6 +9,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Config\CURLRequests\CURLInstances\CURLToLocalhost;
 use Config\CURLRequests\CURLToLocalhost\CURLToCreator\CURLToCreatorToAuth;
 use CodeIgniter\API\ResponseTrait;
+use Config\Services;
 
 class Auth extends DefaultCtrl
 {
@@ -25,11 +26,17 @@ class Auth extends DefaultCtrl
     public function onAxiosCall(): ResponseInterface
     {
         $validationRules = new ValidationRules();
+
         $response["validation"] = $validationRules->validateFields(new LoginValidationFactory(), $this->request);
         if ($response["validation"]["result"]) {
             $curlToLocalhost = new CURLToLocalhost();
             $curlCreatorToAuth = new CURLToCreatorToAuth();
             $response["resp"] = $curlCreatorToAuth->doRequest($this->request->getMethod(), $curlToLocalhost, $this->request->getJSON());
+            if ($response["resp"]["result"] && $response["resp"]["status"] === 200) {
+                $serviceAuth = Services::serviceAuth();
+                $serviceAuth->authApi((array) $response["resp"]["body"]);
+                unset($response["resp"]["body"]);
+            }
             return $this->respond($response, 200);
         }
         $response["resp"]["result"] = null;

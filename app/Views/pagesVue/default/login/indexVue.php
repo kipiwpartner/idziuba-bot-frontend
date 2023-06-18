@@ -16,8 +16,6 @@
                 <buttonComponentSendApi />
                 <buttonComponentSendGraphQL />
             </div>
-
-            <buttonComponentNotify />
         </div>
     </el-container>
 </script>
@@ -32,8 +30,7 @@
 
     const templates = {
         button: '#button-component-template',
-        input: '#input-component-template',
-        password: ''
+        input: '#input-component-template'
     }
 
     loginIndexVue.use(ElementPlus);
@@ -90,17 +87,23 @@
                         e.target.parentNode.blur();
                         mainScripts.resetErrorArray(authModel)
                         if (!resp.data.validation.result) {
-                            mainScripts.notify(this.$notify, data.lang.notify.titles.warning, data.lang.notify.msg.form_invalid, 'warning')
+                            mainScripts.notify(this.$notify, data.lang.notify.titles.error, data.lang.notify.msg.form_invalid, 'error')
                             mainScripts.setErrorArray(resp.data.validation.errors)
+                        }
+                        if (resp.data.validation.result && resp.data.resp.result && resp.data.resp.status === 200){
+                            mainScripts.notify(this.$notify, data.lang.notify.titles.success, data.lang.notify.msg.auth_success, 'success')
+                        }
+                        if (!resp.data.resp.result && resp.data.resp.status === 500){
+                            mainScripts.notify(this.$notify, data.lang.notify.titles.error, data.lang.notify.msg.bad_request, 'error')
                         }
                         this.$parent.$parent.loading = false
                     }
                 },
                 data() {
                     return {
-                        type: 'primary',
-                        vbind: {'round': true},
-                        title:  <?= json_encode(lang('Form.buttons.send')) ?> + ' Api'
+                        type: 'success',
+                        vbind: {},
+                        title:  <?= json_encode(lang('Form.buttons.auth')) ?>
                     }
                 }
             },
@@ -130,24 +133,6 @@
                         type: 'info',
                         vbind: {},
                         title: <?= json_encode(lang('Form.buttons.send')) ?> + ' GraphQL'
-                    }
-                }
-            },
-            'buttonComponentNotify': {
-                template: templates.button,
-                methods: {
-                    handleClick: function (e) {
-                        let data = this.$parent.$parent.data
-                        mainScripts.notify(this.$notify, data.lang.notify.titles.error, data.lang.notify.msg.form_invalid, 'error')
-                        e.target.parentNode.blur();
-
-                    }
-                },
-                data() {
-                    return {
-                        type: '',
-                        vbind: { 'plain': true },
-                        title: <?= json_encode(lang('Form.buttons.notify')) ?> + ' GraphQL'
                     }
                 }
             }

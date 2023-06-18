@@ -4,10 +4,12 @@
 return [
     'titles' => [
         'error' => 'Error',
-        'warning' => 'Warning'
+        'warning' => 'Warning',
+        'success' => 'Success'
     ],
     'msg' => [
-        'bad_request' => 'Bad request',
-        'form_invalid' => 'Form\'s data is invalid'
+        'bad_request' => 'Internal Server Error',
+        'form_invalid' => 'Form\'s data is invalid',
+        'auth_success' => 'You sign in successfully'
     ]
 ];
